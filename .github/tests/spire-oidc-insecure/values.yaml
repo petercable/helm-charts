@@ -14,8 +14,6 @@ spiffe-oidc-discovery-provider:
   ingress:
     enabled: true
     className: "nginx"
-    test:
-      enabled: true
     hosts:
     - host: ingress-nginx-controller
       paths:

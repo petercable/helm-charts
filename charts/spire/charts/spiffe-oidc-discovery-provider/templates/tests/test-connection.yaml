@@ -20,10 +20,10 @@ spec:
       image: busybox
       command: ['wget']
       args: ['{{ include "spiffe-oidc-discovery-provider.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}/.well-known/openid-configuration']
-{{- if and .Values.ingress.enabled .Values.ingress.test.enabled }}
+{{- if and .Values.ingress.enabled }}
     - name: wget-ingress
       image: busybox
       command: ['wget']
-      args: ['ingress-nginx-controller/.well-known/openid-configuration']
+      args: ['{{ .Valus.config.domains[0] }}/.well-known/openid-configuration']
 {{- end }}
   restartPolicy: Never
