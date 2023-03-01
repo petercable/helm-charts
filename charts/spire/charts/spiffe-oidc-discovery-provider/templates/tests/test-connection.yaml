@@ -24,6 +24,6 @@ spec:
     - name: wget-ingress
       image: busybox
       command: ['wget']
-      args: ['{{ index .Valus.config.domains 0 }}/.well-known/openid-configuration']
+      args: ['{{ index .Values.config.domains 0 }}/.well-known/openid-configuration']
 {{- end }}
   restartPolicy: Never
