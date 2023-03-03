@@ -105,6 +105,10 @@ upstreamAuthority:
         key: ""
         bundle: ""
 
+notifier:
+  k8sbundle:
+    namespace: ""
+
 controllerManager:
   enabled: false
 
@@ -167,3 +171,5 @@ extraVolumeMounts: []
 extraContainers: []
 
 initContainers: []
+
+serviceAccountAllowed: ""

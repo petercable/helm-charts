@@ -1,0 +1,18 @@
+global:
+  telemetry:
+    prometheus:
+      enabled: true
+
+spiffe-csi-driver:
+  enabled: true
+
+spire-agent:
+  server:
+    address: spire-server.lockdown
+  enabled: true
+
+spiffe-oidc-discovery-provider:
+  enabled: false
+
+spire-server:
+  enabled: false

@@ -39,7 +39,7 @@ data:
         plugin_data {
           clusters = {
             {{ .Values.clusterName | quote }} = {
-              service_account_allow_list = ["{{ .Release.Namespace }}:{{ .Release.Name }}-agent"]
+              service_account_allow_list = [{{ .Values.serviceAccountAllowed | default (printf "%s:%s-agent-main" .Release.Namespace .Release.Name) | quote}}]
             }
           }
         }
@@ -53,7 +53,7 @@ data:
 
       Notifier "k8sbundle" {
         plugin_data {
-          namespace = {{ .Release.Namespace | quote }}
+          namespace = {{ .Values.notifier.k8sbundle.namespace | default .Release.Namespace | quote }}
           config_map = {{ .Values.bundleConfigMap | quote }}
         }
       }
