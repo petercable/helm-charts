@@ -63,6 +63,7 @@ A Helm chart to install the SPIRE server.
 | logLevel | string | `"info"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| notifier.k8sbundle.namespace | string | `""` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` | SPIRE server currently runs with a sqlite database. Scaling to multiple instances will not work until we use an external database. |
@@ -74,6 +75,7 @@ A Helm chart to install the SPIRE server.
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| serviceAccountAllowed | string | `""` |  |
 | telemetry.prometheus.enabled | bool | `false` |  |
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |
