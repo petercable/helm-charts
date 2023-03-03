@@ -4,15 +4,49 @@ global:
       enabled: true
 
 spiffe-csi-driver:
-  enabled: true
+  enabled: false
 
 spire-agent:
-  server:
-    address: spire-server.lockdown
-  enabled: true
+  enabled: false
 
 spiffe-oidc-discovery-provider:
-  enabled: false
+  enabled: true
+  insecureScheme:
+    enabled: true
+  podSecurityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+  securityContext:
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    capabilities:
+      drop: [ALL]
+    seccompProfile:
+      type: RuntimeDefault
 
 spire-server:
-  enabled: false
+  serviceAccountAllowed: "lockdown:spire-agent"
+  notifier:
+    k8sbundle:
+      namespace: lockdown
+  podSecurityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+  securityContext:
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    capabilities:
+      drop: [ALL]
+    seccompProfile:
+      type: RuntimeDefault
+  controllerManager:
+    securityContext:
+      allowPrivilegeEscalation: false
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop: [ALL]
+      seccompProfile:
+        type: RuntimeDefault
