@@ -114,8 +114,6 @@ spec:
             readOnly: true
         - name: spire-oidc-sockets
           emptyDir: {}
-        - name: nginx-tmp
-          emptyDir: {}
         - name: spire-oidc-config
           configMap:
             name: {{ include "spiffe-oidc-discovery-provider.fullname" . }}
