@@ -62,6 +62,7 @@ A Helm chart to install the SPIRE server.
 | jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | logLevel | string | `"info"` |  |
 | nameOverride | string | `""` |  |
+| nodeAttestor.k8sPsat.serviceAccountsAllowed | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | notifier.k8sbundle.namespace | string | `""` |  |
 | podAnnotations | object | `{}` |  |
@@ -75,7 +76,6 @@ A Helm chart to install the SPIRE server.
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| serviceAccountAllowed | string | `""` |  |
 | telemetry.prometheus.enabled | bool | `false` |  |
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |

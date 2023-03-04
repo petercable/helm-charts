@@ -182,4 +182,6 @@ extraContainers: []
 
 initContainers: []
 
-serviceAccountAllowed: ""
+nodeAttestor:
+  k8sPsat:
+    serviceAccountsAllowed: []

@@ -26,7 +26,9 @@ spiffe-oidc-discovery-provider:
       type: RuntimeDefault
 
 spire-server:
-  serviceAccountAllowed: "lockdown:spire-agent"
+  nodeAttestor:
+    k8sPsat:
+      serviceAccountsAllowed: ["lockdown:spire-agent"]
   notifier:
     k8sbundle:
       namespace: lockdown
