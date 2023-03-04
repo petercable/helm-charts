@@ -79,3 +79,4 @@ Create the name of the service account to use
 {{- else }}
 {{ .Release.Name }}-server
 {{- end }}
+{{- end }}
