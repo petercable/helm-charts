@@ -119,6 +119,8 @@ spec:
         - name: spire-oidc-config
           configMap:
             name: {{ include "spiffe-oidc-discovery-provider.fullname" . }}
+        - name: nginx-tmp
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
