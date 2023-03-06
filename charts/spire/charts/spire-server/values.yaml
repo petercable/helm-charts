@@ -181,3 +181,7 @@ extraVolumeMounts: []
 extraContainers: []
 
 initContainers: []
+
+nodeAttestor:
+  k8sPsat:
+    serviceAccountAllowList: []
