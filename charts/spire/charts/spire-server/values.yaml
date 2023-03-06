@@ -115,6 +115,10 @@ upstreamAuthority:
     namespace: ""
     kube_config_file: ""
 
+notifier:
+  k8sbundle:
+    namespace: ""
+
 controllerManager:
   enabled: false
 
