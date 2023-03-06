@@ -12,8 +12,8 @@ data:
       trust_domain = {{ .Values.trustDomain | quote }}
       data_dir = "/run/spire/data"
       log_level = {{ .Values.logLevel | quote }}
-      # AWS requires the use of RSA.  EC cryptography is not supported
-      ca_key_type = "rsa-2048"
+
+      ca_key_type = {{ .Values.caKeyType | quote }}
 
       jwt_issuer = {{ .Values.jwtIssuer | quote  }}
 
