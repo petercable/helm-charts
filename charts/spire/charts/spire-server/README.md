@@ -23,6 +23,7 @@ A Helm chart to install the SPIRE server.
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | bundleConfigMap | string | `"spire-server"` |  |
+| caTTL | string | `"24h"` |  |
 | ca_subject.common_name | string | `"example.org"` |  |
 | ca_subject.country | string | `"NL"` |  |
 | ca_subject.organization | string | `"Example"` |  |
@@ -60,6 +61,7 @@ A Helm chart to install the SPIRE server.
 | imagePullSecrets | list | `[]` |  |
 | initContainers | list | `[]` |  |
 | jwtIssuer | string | `"oidc-discovery.example.org"` |  |
+| jwtSvidTTL | string | `"1h"` |  |
 | logLevel | string | `"info"` |  |
 | nameOverride | string | `""` |  |
 | nodeAttestor.k8sPsat.enabled | bool | `true` |  |
@@ -91,5 +93,6 @@ A Helm chart to install the SPIRE server.
 | upstreamAuthority.disk.secret.create | bool | `true` | If disabled requires you to create a secret with the given keys (certificate, key and optional bundle) yourself. |
 | upstreamAuthority.disk.secret.data | object | `{"bundle":"","certificate":"","key":""}` | If secret creation is enabled, will create a secret with following certificate info |
 | upstreamAuthority.disk.secret.name | string | `"spiffe-upstream-ca"` | If secret creation is disabled, the secret with this name will be used. |
+| x509SvidTTL | string | `"4h"` |  |
 
 ----------------------------------------------
