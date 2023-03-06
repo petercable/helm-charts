@@ -1,17 +1,6 @@
-# ClusterRole to allow spire-server node attestor to query Token Review API
-# and to be able to push certificate bundles to a configmap
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: {{ include "spire-server.fullname" . }}-pods
-  namespace: {{ .Release.Namespace }}
-rules:
-  # allow "get" access to pods (to resolve selectors for PSAT attestation)
-  - apiGroups: [""]
-    resources: [pods]
-    verbs: [get]
-    # allow access to "get" and "patch" the spire-bundle ConfigMap (for SPIRE
-    # agent bootstrapping, see the spire-bundle ConfigMap below)
+# ClusterRole to allow spire-server node attestor to query Token Review API,
+# Role to be able to push certificate bundles to a configmap, and Role to
+# be able to manage cert requests with Cert-Manager
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
@@ -27,7 +16,14 @@ rules:
     verbs:
       - get
       - patch
-  {{- if and .Values.upstreamAuthority.certManager.enabled .Values.upstreamAuthority.certManager.rbac.create }}
+{{- if and .Values.upstreamAuthority.certManager.enabled .Values.upstreamAuthority.certManager.rbac.create }}
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "spire-server.fullname" . }}-cm
+  namespace: {{ .Release.Namespace }}
+rules:
   - apiGroups: ["cert-manager.io"]
     resources:
       - certificaterequests
@@ -38,12 +34,11 @@ rules:
       - delete
       - patch
       - update
-  {{- end }}
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ include "spire-server.fullname" . }}-pods
+  name: {{ include "spire-server.fullname" . }}-cm
   namespace: {{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
@@ -51,8 +46,9 @@ subjects:
     namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
-  name: {{ include "spire-server.fullname" . }}
+  name: {{ include "spire-server.fullname" . }}-cm
   apiGroup: rbac.authorization.k8s.io
+{{- end }}
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
